@@ -19,7 +19,7 @@ public class Main {
 		//Coste total de la compra
 		
         BigDecimal coste = shopping.stream()
-                .map(product -> product.price)
+                .map(product -> product.price.multiply(BigDecimal.ONE.add(BigDecimal.valueOf(product.tax.percent).divide(new BigDecimal(100)))))
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
                 .setScale(2, RoundingMode.HALF_UP);
 		System.out.println(coste);
